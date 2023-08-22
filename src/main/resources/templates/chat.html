@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+MyChat
+
+<table border="2">
+    <thead>
+    <tr>
+
+        <td th:text="${thead.name}"></td>
+        <td th:text="${thead.massage}"></td>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="line: ${tbody}">
+
+        <td th:text="${line.name}"></td>
+        <td th:text="${line.massage}"></td>
+
+    </tr>
+    </tbody>
+</table>
+<form method="post" th:action="@{/sendMassage}">
+    <p>YourMassage:</p>      <input type="text" name="massage"><br>
+    <input type="submit" value="отправить">
+</form>
+
+<!--<a href="/sendMassage">back</a>-->
+
+</body>
+</html>
