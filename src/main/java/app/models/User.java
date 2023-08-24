@@ -3,6 +3,7 @@ package app.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,13 +20,20 @@ public class User {
 
     String password;
 
-    User(){
+    @OneToMany(mappedBy = "user")
+    private List<User> user;
+
+    public User() {
 
     }
-    User(String name, String username, String password){
-this.name =name;
-this.username = username;
-this.password = password;
+
+    public User(String name, String username, String password) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
 
     }
+
+
+
 }

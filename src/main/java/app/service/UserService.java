@@ -22,4 +22,9 @@ public class UserService {
         return repo.findAll();
     }
 
+
+    public User getUserById (int id){
+        return repo.getUserById(id);
+    }
+
 }

@@ -3,6 +3,7 @@ package app.models;
 import lombok.Data;
 import javax.persistence.Table;
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -12,21 +13,28 @@ public class UserMassage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    String name;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 
+    String name;
     String massage;
+
+  /*  @OneToMany(mappedBy = "userMassage")
+    private List<UserMassage> massages;*/
 
     public  UserMassage(){
 
     }
 
-    public UserMassage(String name, String massage) {
-        this.name = name;
+    public UserMassage(User user, String name, String massage) {
+        this.user = user;
         this.massage = massage;
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return String.format("Id: %s Name: %s, Age: %s massage: %s", id, name, massage);
+        return String.format("Id: %s massage: %s", id, massage);
     }
 }

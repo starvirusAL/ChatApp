@@ -4,6 +4,7 @@ import app.custom.TableHeader;
 import app.models.InputModdels;
 import app.models.UserMassage;
 import app.service.MessageService;
+import app.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -19,11 +20,13 @@ import java.util.Map;
 @Log4j2
 @RequiredArgsConstructor
 public class MassageController {
-    private final MessageService service;
+    private final MessageService messageService;
+
+    private final UserService userService;
 
     private Map<String, Object> data() {
         TableHeader th = new TableHeader("N", "Name", "massage");
-        List<UserMassage> tb = service.findAll();
+        List<UserMassage> tb = messageService.findAll();
         return Map.of(
                 "thead", th,
                 "tbody", tb
@@ -33,10 +36,9 @@ public class MassageController {
     @PostMapping("sendMassage")
     public String sendMassage(Model model, InputModdels form, HttpServletRequest rq) {
         Map<String, String[]> allParams = rq.getParameterMap();
-        List<UserMassage> tb = service.findAll();
-        if(form.getMassage() != null){
-        UserMassage user = new UserMassage("Alex", form.getMassage());
-            service.create(user);}
+        List<UserMassage> tb = messageService.findAll();
+            UserMassage massage = new UserMassage(userService.getUserById(form.getIdUser()), userService.getUserById(form.getIdUser()).getName(),  form.getMassage());
+            messageService.create(massage);
 
         return "redirect:chat";
     }
