@@ -1,9 +1,7 @@
 package app.repo;
 
-import app.models.UserMassage;
+import app.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepo extends JpaRepository<UserMassage, Integer> {
-
-
+public interface UserRepo extends JpaRepository<User, Integer> {
 }

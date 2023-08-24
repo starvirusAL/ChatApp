@@ -9,7 +9,11 @@
 </head>
 <body>
 MyChat
-
+<select id="fruits" name="fruits">
+    <option value="apple"><a href="/sendMassage">back</a></option>
+    <option value="banana">Банан</option>
+    <option value="orange">Апельсин</option>
+</select>
 <table border="2">
     <thead>
     <tr>
@@ -27,11 +31,12 @@ MyChat
 
     </tr>
     </tbody>
+    <form method="post" th:action="@{/sendMassage}">
+        <p>YourMassage:</p>      <input type="text" name="massage"><br>
+        <input type="submit" value="отправить">
+    </form>
 </table>
-<form method="post" th:action="@{/sendMassage}">
-    <p>YourMassage:</p>      <input type="text" name="massage"><br>
-    <input type="submit" value="отправить">
-</form>
+
 
 <!--<a href="/sendMassage">back</a>-->
 

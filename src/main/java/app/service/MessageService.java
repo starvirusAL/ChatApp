@@ -1,24 +1,21 @@
 package app.service;
 
-import app.models.User;
 import app.models.UserMassage;
-import app.repo.UserRepo;
+import app.repo.MassageRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class MessageService {
 
-    private  final UserRepo repo;
+    private final MassageRepo repo;
 
-    public void create(User user){
-        repo.save(user);
+    public  void create(UserMassage massage){
+        repo.save(massage);
     }
 
-    public List<User> findAll(){
+    public  List<UserMassage> findAll(){
         return repo.findAll();
     }
 
