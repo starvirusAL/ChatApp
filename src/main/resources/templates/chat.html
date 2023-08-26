@@ -6,14 +6,32 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+   #userForm {
+    width: 15px;
+   }
+   input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+  </style>
 </head>
 <body>
 MyChat
-<select id="fruits" name="fruits">
+
+<!--<select id="fruits" name="fruits">
     <option value="apple"><a href="/sendMassage">back</a></option>
     <option value="banana">Банан</option>
     <option value="orange">Апельсин</option>
-</select>
+</select>-->
+
 <table border="2">
     <thead>
     <tr>
@@ -32,11 +50,21 @@ MyChat
     </tr>
     </tbody>
     <form method="post" th:action="@{/sendMassage}">
-        <p>YourMassage:</p><input type="number" name="idUser"><input type="text" name="massage"><br>
+        <p>YourMassage:</p>
+        <input type="number" name="idUser" id="userForm" >
+        <input type="text" name="massage"><br>
         <input type="submit" value="отправить">
     </form>
 </table>
 
+<p></p>
+<form method="post" th:action="@{/createChat}">
+    <input type="submit" value="создать чат">
+</form>
+<p></p>
+<form method="post" th:action="@{/goToRegistration}">
+    <input type="submit" value="регистрация">
+</form>
 
 <!--<a href="/sendMassage">back</a>-->
 

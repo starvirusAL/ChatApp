@@ -19,4 +19,10 @@ public class MessageService {
         return repo.findAll();
     }
 
+
+
+    public void getUserMassageByUserId(int id){
+        repo.getUserMassageByUserId(id);
+    }
+
 }

@@ -34,4 +34,11 @@ public class UserController {
     public String showMassage(Model model) {
         return "registration";
     }
+    @PostMapping("goToRegistration")
+    public String registration(HttpServletRequest rq) {
+        Map<String, String[]> allParams = rq.getParameterMap();
+
+        return "redirect:registration";
+    }
+
 }

@@ -1,10 +1,14 @@
 package app.models;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "Chats")
 public class Chats {
@@ -15,26 +19,24 @@ public class Chats {
 
     @ManyToOne
     @JoinColumn(name = "user_id1")
-
      User userFirst;
 
    @ManyToOne
     @JoinColumn(name = "user_id2")
-
     User userSecond;
 
-    @ManyToOne
-    @JoinColumn(name = "massage_id")
-    private UserMassage userMassage;
+    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.REMOVE },fetch =FetchType.EAGER ,mappedBy = "chats")
+    private List<UserMassage> userMassage;
 
    public Chats(){
 
     }
 
-    public Chats(User userFirst, User userSecond, UserMassage userMassage){
+
+    public Chats(User userFirst, User userSecond){
        this.userFirst = userFirst;
        this.userSecond = userSecond;
-       this.userMassage = userMassage;
+
 
     }
 

@@ -3,6 +3,7 @@ package app.controller;
 import app.custom.TableHeader;
 import app.models.InputModdels;
 import app.models.UserMassage;
+import app.service.ChatService;
 import app.service.MessageService;
 import app.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,8 @@ import java.util.Map;
 public class MassageController {
     private final MessageService messageService;
 
+    private final ChatService chatService;
+
     private final UserService userService;
 
     private Map<String, Object> data() {
@@ -34,18 +37,23 @@ public class MassageController {
     }
 
     @PostMapping("sendMassage")
-    public String sendMassage(Model model, InputModdels form, HttpServletRequest rq) {
+    public String sendMassage(InputModdels form, HttpServletRequest rq) {
         Map<String, String[]> allParams = rq.getParameterMap();
         List<UserMassage> tb = messageService.findAll();
-            UserMassage massage = new UserMassage(userService.getUserById(form.getIdUser()), userService.getUserById(form.getIdUser()).getName(),  form.getMassage());
-            messageService.create(massage);
+        UserMassage massage = new UserMassage(
+                userService.getUserById(form.getIdUser()),
+                userService.getUserById(form.getIdUser()).getName(),
+                form.getMassage(),
+                chatService.getChatById(1));
+
+        messageService.create(massage);
 
         return "redirect:chat";
     }
 
     @GetMapping("chat")
     public String showMassage(Model model) {
-    data().forEach((k, v) -> model.addAttribute(k, v));
+        data().forEach((k, v) -> model.addAttribute(k, v));
         return "chat";
     }
 }
