@@ -12,7 +12,6 @@ public class TableHeader {
     @Getter
     String name;
     @Getter
-
     String massage;
 
 

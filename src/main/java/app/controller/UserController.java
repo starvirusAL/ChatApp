@@ -23,7 +23,7 @@ public class UserController {
     private final UserService service;
 
     @PostMapping("registration")
-    public String registration(Model model, InputModdels form, HttpServletRequest rq) {
+    public String registration(InputModdels form, HttpServletRequest rq) {
         Map<String, String[]> allParams = rq.getParameterMap();
             User user = new User(form.getName() ,form.getUsername(), form.getPassword());
             service.create(user);
@@ -31,13 +31,11 @@ public class UserController {
     }
 
     @GetMapping("registration")
-    public String showMassage(Model model) {
+    public String showMassage() {
         return "registration";
     }
     @PostMapping("goToRegistration")
-    public String registration(HttpServletRequest rq) {
-        Map<String, String[]> allParams = rq.getParameterMap();
-
+    public String registration() {
         return "redirect:registration";
     }
 

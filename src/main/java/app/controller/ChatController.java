@@ -28,11 +28,8 @@ public class ChatController {
     private final UserService userService;
 
     @PostMapping("createChat")
-    public String sendMassage(Model model, InputModdels form, HttpServletRequest rq) {
-        Map<String, String[]> allParams = rq.getParameterMap();
-
+    public String sendMassage() {
         service.create(new Chats(userService.getUserById(1),  userService.getUserById(2)));
-
         return "redirect:chat";
     }
 }
